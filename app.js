@@ -2,23 +2,25 @@ var express = require('express'),
     app = express();
     post = require('./routes/post');
 var bodyParser = require('body-parser');
+var connect        = require('connect')
 var methodOverride = require('method-override');
 
 
 
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use( methodOverride());
+app.use(methodOverride('_method'))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
 
 app.get('/',post.index);
+app.get('/posts/:id',post.show);
+
 /*
 app.get('/posts/new',post.new);
 app.post('/posts/create',post.create);
-app.get('/posts/:id`',post.show);
 app.get('/posts/:id`',post.edit);
 app.put('/posts/:id',post.update);
 app.delete('/posts/:id',post.destroy);
