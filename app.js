@@ -13,7 +13,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
+app.use(function(err, req, res, next){
+  res.send(err.message);
+});
 
 
 app.get('/',post.index);
